@@ -61,16 +61,32 @@ public class CarParking {
             }
         }
     }
-    
-    public double remove(int floor, int row, int col, double rate){
-        
+
+    public double remove(int floor, int row, int col, double rate) {
+
         Vehicle v = slots[floor][row][col];
-        double dur = v.getDuration(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))/60000;
+        double dur = v.getDuration(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())) / 60000;
         double fee = dur * rate;
-        if(floor != 0){
-            fee = fee - (fee * 5 /100);
+        if (floor != 0) {
+            fee = fee - (fee * 5 / 100);
         }
         slots[floor][row][col] = null;
         return fee;
+    }
+
+    public double getTotalExpectedRevenue(double[] rates, Date exitTime) {
+        return 0;
+    }
+
+    public int getVehicleCount() {
+        return 0;
+    }
+
+    public double getRevenue(String type, int floor, double rate) {
+        return 0;
+    }
+
+    public boolean canOrganizeByType() {
+        return false;
     }
 }
