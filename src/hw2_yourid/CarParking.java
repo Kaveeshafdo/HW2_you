@@ -36,16 +36,6 @@ public class CarParking {
         }
     }
 
-    public static void main(String[] args) {
-        //CarParking cp = new CarParking();
-        /*Vehicle v = new Vehicle();
-        v.setType("SUV");
-        v.setEntryTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
-        slots[2][2][2] = v;
-        isOccupied(2, 2, 2);*/
-        //cp.isOccupied(3, 2, 2);
-    }
-
     public void add(Vehicle v) {
         int floor = 0;
         int row = 0;
