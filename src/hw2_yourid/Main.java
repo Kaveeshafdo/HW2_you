@@ -57,7 +57,7 @@ public class Main {
 
                     break;
                 case 2:
-                   // cp.remove(0, 1, 1, rates[1]);
+                    cp.remove(0, 1, 1, rates[1]);
                     System.out.println("Vehicle removed");
                     break;
                 case 3:
