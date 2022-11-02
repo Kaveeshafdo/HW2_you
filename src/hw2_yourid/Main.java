@@ -4,9 +4,13 @@
  */
 package hw2_yourid;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
+
     static Vehicle v;
     static CarParking cp = new CarParking();
     static double rates[] = new double[3];
@@ -38,17 +42,20 @@ public class Main {
                             break;
 
                         case 2:
-
+                            v = new Vehicle("SUV");
+                            cp.add(v);
                             break;
 
                         case 3:
-
+                            v = new Vehicle("Truck");
+                            cp.add(v);
                             break;
                     }
 
                     break;
                 case 2:
-                    System.out.println("");
+                    cp.remove(0, 1, 1, rates[0]);
+                    System.out.println("removed");
                     break;
                 case 3:
                     System.out.println("Select Option");
@@ -59,14 +66,21 @@ public class Main {
                     int statistics = sc.nextInt();
                     switch (statistics) {
                         case 1:
-
+                            System.out.println(cp.getTotalExpectedRevenue(rates, Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())));
                             break;
 
                         case 2:
-
+                            System.out.println("sedans on first floor" + cp.getVehicleCount("Sedan", 0));
+                            ;
+                            System.out.println("sedans on s floor" + cp.getVehicleCount("Sedan", 1));
+                            ;
+                            System.out.println("sedans on first floor" + cp.getVehicleCount("Sedan", 2));
+                            ;
                             break;
 
                         case 3:
+                            System.out.println("sedans on first floor" + cp.getRevenue("Sedan", 1, rates[0]));
+                            ;
 
                             break;
                         case 4:
@@ -75,20 +89,17 @@ public class Main {
                     }
                     break;
                 case 4:
-                    System.out.println("Select Option");
-                    System.out.println("1. Cars can be arranged based on their type");
-                    System.out.println("2. Not possible to rearrange cars based on their type.");
-                     int check = sc.nextInt();
-                    switch (check) {
-                        case 1:
+                    System.out.println("Can organize or not");
 
-                            break;
+                    //int check = sc.nextInt();
+                    if (cp.canOrganizeByType()) {
 
-                        case 2:
+                        System.out.println("1. Cars can be arranged based on their type");
 
-                            break;
+                    } else {
 
-                      
+                        System.out.println("2. Not possible to rearrange cars based on their type.");
+
                     }
                     break;
                 case 5:
