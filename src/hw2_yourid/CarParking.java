@@ -126,7 +126,23 @@ public class CarParking {
     }
 
     public double getRevenue(String type, int floor, double rate) {
-        return 0;
+        double rev = 0;
+        int row = 0;
+        int col = 0;
+        for (row = 0; row < this.row; row++) {
+            for (col = 0; col < this.col; col++) {
+                if (slots[floor][row][col].getType().equals(type)) {
+                    Vehicle v = slots[floor][row][col];
+                    double dur = v.getDuration(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())) / 60000;
+                    double fee = dur * rate;
+                    if (floor != 0) {
+                        fee = fee - (fee * 5 / 100);
+                    }
+                    rev = rev + fee;
+                }
+            }
+        }
+        return rev;
     }
 
     public boolean canOrganizeByType() {
