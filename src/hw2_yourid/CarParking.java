@@ -78,8 +78,18 @@ public class CarParking {
         return 0;
     }
 
-    public int getVehicleCount() {
-        return 0;
+    public int getVehicleCount(String type, int floor) {
+        int count = 0;
+        int row = 0;
+        int col = 0;
+        for (row = 0; row < CarParking.row; row++) {
+            for (col = 0; col < CarParking.col; col++) {
+                if (slots[floor][row][col].getType().equals(type)) {
+                    ++count;
+                }
+            }
+        }
+        return count;
     }
 
     public double getRevenue(String type, int floor, double rate) {
