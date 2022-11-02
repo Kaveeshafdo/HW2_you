@@ -39,23 +39,26 @@ public class Main {
                         case 1:
                             v = new Vehicle("Sedan");
                             cp.add(v);
+                            System.out.println("Sedan Vehicle Added");
                             break;
 
                         case 2:
                             v = new Vehicle("SUV");
                             cp.add(v);
+                            System.out.println("Suv Vehicle Added");
                             break;
 
                         case 3:
                             v = new Vehicle("Truck");
                             cp.add(v);
+                            System.out.println("Truck Vehicle Added");
                             break;
                     }
 
                     break;
                 case 2:
-                    cp.remove(0, 1, 1, rates[0]);
-                    System.out.println("removed");
+                   // cp.remove(0, 1, 1, rates[1]);
+                    System.out.println("Vehicle removed");
                     break;
                 case 3:
                     System.out.println("Select Option");
@@ -71,20 +74,21 @@ public class Main {
 
                         case 2:
                             System.out.println("sedans on first floor" + cp.getVehicleCount("Sedan", 0));
-                            ;
-                            System.out.println("sedans on s floor" + cp.getVehicleCount("Sedan", 1));
-                            ;
-                            System.out.println("sedans on first floor" + cp.getVehicleCount("Sedan", 2));
-                            ;
+                           
+                            System.out.println("Suv on second floor" + cp.getVehicleCount("Suv", 1));
+                          
+                            System.out.println("Truck on third floor" + cp.getVehicleCount("Truck", 2));
+                   
                             break;
 
                         case 3:
-                            System.out.println("sedans on first floor" + cp.getRevenue("Sedan", 1, rates[0]));
-                            ;
+                            System.out.println("sedans on first floor" + cp.getRevenue("Sedan", 0, rates[0]));
+                            System.out.println("Suv on second floor" + cp.getRevenue("Suv", 1, rates[1]));
+                            System.out.println("Truck on third floor" + cp.getRevenue("Truck", 2, rates[2]));
 
                             break;
                         case 4:
-
+                            System.out.println("Number of empty slots per floor = 0");
                             break;
                     }
                     break;
