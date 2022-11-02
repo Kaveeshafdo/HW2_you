@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class Main {
     static Vehicle v;
     static CarParking cp = new CarParking();
+    static double rates[] = new double[3];
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

@@ -136,7 +136,21 @@ public class CarParking {
     }
 
     public boolean canOrganizeByType() {
-        
+        int floor = 0;
+        int row = 0;
+        int col = 0;
+
+        for (floor = 0; floor < this.floor; floor++) {
+            for (row = 0; row < this.row; row++) {
+                for (col = 0; col < this.col; col++) {
+                    if (isOccupied(floor, row, col)) {
+                        if(slots[floor][row][col].getType().equals("Sedan")){
+                        
+                        }   
+                    }
+                }
+            }
+        }
         return false;
     }
 }
