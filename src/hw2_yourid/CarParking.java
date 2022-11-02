@@ -15,10 +15,10 @@ import java.util.Date;
  */
 public class CarParking {
 
-     int floor = 3;
-     int row = 7;
-     int col = 7;
-    public  Vehicle[][][] slots = new Vehicle[floor][row][col];
+    int floor = 3;
+    int row = 7;
+    int col = 7;
+    public Vehicle[][][] slots = new Vehicle[floor][row][col];
 
     public Vehicle[][][] getSlots() {
         return slots;
@@ -63,10 +63,10 @@ public class CarParking {
     }
 
     public double remove(int floor, int row, int col, double rate) {
-
+        double fee = 0;
         Vehicle v = slots[floor][row][col];
         double dur = v.getDuration(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())) / 60000;
-        double fee = dur * rate;
+        fee = dur * rate;
         if (floor != 0) {
             fee = fee - (fee * 5 / 100);
         }
@@ -75,7 +75,40 @@ public class CarParking {
     }
 
     public double getTotalExpectedRevenue(double[] rates, Date exitTime) {
-        return 0;
+        int floor = 0;
+        int row = 0;
+        int col = 0;
+        double rev = 0;
+        for (floor = 0; floor < this.floor; floor++) {
+            for (row = 0; row < this.row; row++) {
+                for (col = 0; col < this.col; col++) {
+                    if (isOccupied(floor, row, col)) {
+                        double fee = 0;
+                        Vehicle v = slots[floor][row][col];
+                        double dur = v.getDuration(exitTime) / 60000;
+                        double rate = 0;
+                        switch (v.getType()) {
+                            case "Sedan":
+                                rate = rates[0];
+                                break;
+                            case "SUV":
+                                rate = rates[1];
+                                break;
+                            case "Truck":
+                                rate = rates[2];
+                                break;
+                        }
+                        fee = dur * rate;
+                        if (floor != 0) {
+                            fee = fee - (fee * 5 / 100);
+                        }
+                        rev = rev + fee;
+                        //slots[floor][row][col] = v;
+                    }
+                }
+            }
+        }
+        return rev;
     }
 
     public int getVehicleCount(String type, int floor) {
