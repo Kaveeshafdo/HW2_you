@@ -4,6 +4,8 @@
  */
 package hw2_yourid;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 /**
@@ -13,6 +15,11 @@ import java.util.Date;
 public class Vehicle {
     String type;
     Date entryTime;
+    
+    public Vehicle(String type){
+        this.type = type;
+        entryTime = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
+    }
 
     public String getType() {
         return type;

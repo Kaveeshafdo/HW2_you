@@ -136,6 +136,7 @@ public class CarParking {
     }
 
     public boolean canOrganizeByType() {
+        
         return false;
     }
 }

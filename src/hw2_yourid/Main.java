@@ -7,6 +7,8 @@ package hw2_yourid;
 import java.util.Scanner;
 
 public class Main {
+    static Vehicle v;
+    static CarParking cp = new CarParking();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -30,7 +32,8 @@ public class Main {
                     int type = sc.nextInt();
                     switch (type) {
                         case 1:
-
+                            v = new Vehicle("Sedan");
+                            cp.add(v);
                             break;
 
                         case 2:
