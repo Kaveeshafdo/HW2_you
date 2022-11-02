@@ -33,4 +33,8 @@ public class Vehicle {
     public double getDuration(Date exitTime){
         return (exitTime.getTime() - entryTime.getTime());
     }
+    
+    enum type{
+       Sedan,SUV,Truck
+    }
 }

@@ -6,15 +6,8 @@ package hw2_yourid;
 
 import java.util.Scanner;
 
-/**
- *
- * @author Chandramal
- */
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         boolean keepGoing = true;
@@ -30,20 +23,72 @@ public class Main {
             menuItem = sc.nextInt();
             switch (menuItem) {
                 case 1:
-                    System.out.println("");
+                    System.out.println("Select a type");
+                    System.out.println("1. Sedan");
+                    System.out.println("2. Suv");
+                    System.out.println("3. Truck");
+                    int type = sc.nextInt();
+                    switch (type) {
+                        case 1:
+
+                            break;
+
+                        case 2:
+
+                            break;
+
+                        case 3:
+
+                            break;
+                    }
+
                     break;
                 case 2:
                     System.out.println("");
                     break;
                 case 3:
-                    System.out.println("");
+                    System.out.println("Select Option");
+                    System.out.println("1. Total expected revenue");
+                    System.out.println("2. Number of sedans, SUVs and trucks per floor");
+                    System.out.println("3. Revenue of sedans, SUVs and trucks per floor");
+                    System.out.println("4. Number of empty slots per floor");
+                    int statistics = sc.nextInt();
+                    switch (statistics) {
+                        case 1:
+
+                            break;
+
+                        case 2:
+
+                            break;
+
+                        case 3:
+
+                            break;
+                        case 4:
+
+                            break;
+                    }
                     break;
                 case 4:
-                    System.out.println("");
+                    System.out.println("Select Option");
+                    System.out.println("1. Cars can be arranged based on their type");
+                    System.out.println("2. Not possible to rearrange cars based on their type.");
+                     int check = sc.nextInt();
+                    switch (check) {
+                        case 1:
+
+                            break;
+
+                        case 2:
+
+                            break;
+
+                      
+                    }
                     break;
                 case 5:
-                   System.exit(1);
-                    
+                    System.exit(0);
                     break;
 
             }
