@@ -13,8 +13,8 @@ import java.util.Date;
  * @author Chandramal
  */
 public class Vehicle {
-    String type;
-    Date entryTime;
+    private String type;
+    private Date entryTime;
     
     public Vehicle(String type){
         this.type = type;

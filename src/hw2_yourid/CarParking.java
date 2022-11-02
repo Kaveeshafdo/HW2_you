@@ -28,6 +28,38 @@ public class CarParking {
         this.slots = slots;
     }
 
+    public void showSlots() {
+        for (Vehicle[][] m : slots) {
+            System.out.print("[");
+            for (Vehicle[] a : m) {
+                System.out.print("[");
+                for (Vehicle n : a) {
+                    if (n != null) {
+                        System.out.print(n.getType() + " ");
+                    } else {
+                        System.out.print(" ");
+                    }// printing each item
+                }
+                System.out.print("]");
+            }
+            System.out.print("]\n");
+        }
+    }
+
+    public int emptySlots(int floor) {
+        int count = 0;
+        int row = 0;
+        int col = 0;
+        for (row = 0; row < this.row; row++) {
+            for (col = 0; col < this.col; col++) {
+                if (slots[floor][row][col] == null) {
+                    count = count + 1;
+                }
+            }
+        }
+        return count;
+    }
+
     public boolean isOccupied(int floor, int row, int col) {
         if (slots[floor][row][col] == null) {
             return false;
@@ -44,12 +76,16 @@ public class CarParking {
         for (floor = 0; floor < this.floor; floor++) {
             for (row = 0; row < this.row; row++) {
                 for (col = 0; col < this.col; col++) {
-                    if (isOccupied(floor, row, col)) {
+                    if (!isOccupied(floor, row, col)) {
                         slots[floor][row][col] = v;
+                        floor = this.floor;
+                        row = this.row;
+                        col = this.col;
                     }
                 }
             }
         }
+        showSlots();
     }
 
     public double remove(int floor, int row, int col, double rate) {
@@ -61,6 +97,7 @@ public class CarParking {
             fee = fee - (fee * 5 / 100);
         }
         slots[floor][row][col] = null;
+        showSlots();
         return fee;
     }
 
@@ -107,8 +144,10 @@ public class CarParking {
         int col = 0;
         for (row = 0; row < this.row; row++) {
             for (col = 0; col < this.col; col++) {
-                if (slots[floor][row][col].getType().equals(type)) {
-                    ++count;
+                if (isOccupied(floor, row, col)) {
+                    if (slots[floor][row][col].getType().equals(type)) {
+                        count = count + 1;
+                    }
                 }
             }
         }
@@ -121,14 +160,16 @@ public class CarParking {
         int col = 0;
         for (row = 0; row < this.row; row++) {
             for (col = 0; col < this.col; col++) {
-                if (slots[floor][row][col].getType().equals(type)) {
-                    Vehicle v = slots[floor][row][col];
-                    double dur = v.getDuration(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())) / 60000;
-                    double fee = dur * rate;
-                    if (floor != 0) {
-                        fee = fee - (fee * 5 / 100);
+                if (isOccupied(floor, row, col)) {
+                    if (slots[floor][row][col].getType().equals(type)) {
+                        Vehicle v = slots[floor][row][col];
+                        double dur = v.getDuration(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())) / 60000;
+                        double fee = dur * rate;
+                        if (floor != 0) {
+                            fee = fee - (fee * 5 / 100);
+                        }
+                        rev = rev + fee;
                     }
-                    rev = rev + fee;
                 }
             }
         }
@@ -144,9 +185,9 @@ public class CarParking {
             for (row = 0; row < this.row; row++) {
                 for (col = 0; col < this.col; col++) {
                     if (isOccupied(floor, row, col)) {
-                        if(slots[floor][row][col].getType().equals("Sedan")){
-                        
-                        }   
+                        if (slots[floor][row][col].getType().equals("Sedan")) {
+
+                        }
                     }
                 }
             }
