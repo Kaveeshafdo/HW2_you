@@ -114,17 +114,14 @@ public class CarParking {
                         Vehicle v = slots[floor][row][col];
                         double dur = v.getDuration(exitTime) / 60000;
                         double rate = 0;
-                        switch (v.getType()) {
-                            case "Sedan":
-                                rate = rates[0];
-                                break;
-                            case "SUV":
-                                rate = rates[1];
-                                break;
-                            case "Truck":
-                                rate = rates[2];
-                                break;
+                        if (v.getType().equals("Sedan")) {
+                            rate = rates[0];
+                        } else if (v.getType().equals("SUV")) {
+                            rate = rates[1];
+                        } else if (v.getType().equals("Truck")) {
+                            rate = rates[2];
                         }
+
                         fee = dur * rate;
                         if (floor != 0) {
                             fee = fee - (fee * 5 / 100);

@@ -41,7 +41,5 @@ public class Vehicle {
         return (exitTime.getTime() - entryTime.getTime());
     }
     
-    enum type{
-       Sedan,SUV,Truck
-    }
+   
 }
